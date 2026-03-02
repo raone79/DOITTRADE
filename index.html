@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doit Trade | PGM & Alloy Trading Platform</title>
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* --- DOIT TRADE BRIGHT THEME --- */
+        :root {
+            --bg-body: #f8f9fa; /* Light Gray */
+            --bg-panel: #ffffff; /* White */
+            --bg-header: #ffffff;
+            --accent: #00aae4; /* Bright Blue from "Doit" */
+            --accent-dark: #002244; /* Dark Blue from "Trade" */
+            --accent-hover: #0095c7;
+            --text-main: #212529; /* Very Dark Gray */
+            --text-muted: #6c757d; /* Medium Gray */
+            --border-color: #dee2e6; /* Light Gray Border */
+            --up-text: #198754; /* Bootstrap Green */
+            --down-text: #dc3545; /* Bootstrap Red */
+            --up-bg-flash: #d1e7dd; /* Light Green for Flash */
+            --down-bg-flash: #f8d7da; /* Light Red for Flash */
+            --wa-green: #25D366;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Arial', sans-serif; }
+        body { background-color: var(--bg-body); color: var(--text-main); font-size: 16px; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh;}
+        a { text-decoration: none; cursor: pointer; color: var(--accent); }
+        a:hover { color: var(--accent-hover); }
+        .container { width: 95%; max-width: 1200px; margin: 0 auto; }
+
+        /* --- TOP CLOCK BAR --- */
+        .top-bar { background: var(--bg-body); border-bottom: 1px solid var(--border-color); padding: 8px 0; font-size: 13px; color: var(--text-muted); }
+        #clock { color: var(--accent-dark); font-weight: bold; font-family: monospace; font-size: 14px; }
+
+        /* --- LOGO & LOGIN HEADER --- */
+        .main-header { background: var(--bg-header); padding: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .header-flex { display: flex; justify-content: space-between; align-items: center; }
+        .logo-text { display: flex; align-items: center; font-size: 38px; font-weight: 900; font-family: 'Arial Black', sans-serif; letter-spacing: -2px; }
+        .logo-text .handshake-icon { font-size: 30px; margin: 0 5px; color: var(--accent); }
+        .logo-text sup { color: var(--text-main); }
+        .btn-primary { background: var(--accent); color: #ffffff; border: none; padding: 10px 22px; font-weight: bold; border-radius: 4px; cursor: pointer; transition: 0.2s; }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); padding: 8px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-left: 10px; transition: 0.2s; }
+        .btn-outline:hover { background: var(--accent); color: #ffffff; }
+        .hamburger { display: none; color: var(--accent-dark); font-size: 26px; cursor: pointer; margin-left: 15px; }
+
+        /* --- NAVIGATION --- */
+        .main-nav { background: var(--bg-header); border-top: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .main-nav ul { list-style: none; display: flex; flex-wrap: wrap; margin: 0; padding: 0; align-items: center; }
+        .main-nav li a { display: block; padding: 14px 20px; color: var(--text-muted); font-weight: bold; font-size: 14px; text-transform: uppercase; transition: 0.3s; }
+        .main-nav li a:hover, .main-nav li a.active { color: var(--accent-dark); }
+        .dropdown { position: relative; }
+        .dropdown-content { display: none; position: absolute; background-color: var(--bg-header); min-width: 200px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 1; border: 1px solid var(--border-color); border-radius: 4px; margin-top: 1px; }
+        .dropdown-content a { font-size: 13px; text-transform: none; padding: 12px 16px; color: var(--text-main); }
+        .dropdown-content a:hover { background-color: var(--bg-body); }
+        .dropdown:hover .dropdown-content { display: block; }
+        
+        /* --- MARQUEE --- */
+        .marquee-wrap { background: var(--accent-dark); padding: 8px 0; display: flex; align-items: center; }
+        .marquee-label { background: var(--accent); color: #ffffff; padding: 4px 12px; font-weight: bold; font-size: 12px; margin-right: 15px; border-radius: 2px; }
+        marquee { color: #ffffff; font-size: 14px; font-weight: bold; }
+
+        /* --- SPA LOGIC --- */
+        .page-view { display: none; animation: fadeIn 0.4s ease-in-out; flex: 1; }
+        .page-view.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- NEW HOME PAGE STYLES --- */
+        .hero-banner { text-align: center; padding: 80px 20px; background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(https://via.placeholder.com/1200x400.png/E0E0E0/FFFFFF?text=) center/cover no-repeat; }
+        .hero-banner h1 { font-size: 48px; color: var(--accent-dark); margin-bottom: 15px; font-family: 'Arial Black', sans-serif; }
+        .hero-banner p { font-size: 20px; color: var(--text-muted); margin-bottom: 30px; }
+        .hero-banner .btn-primary { margin: 0 10px; }
+        .intro-section, .app-section-wrap { padding: 60px 0; }
+        .intro-section h2 { font-size: 32px; color: var(--accent-dark); text-align: center; margin-bottom: 25px; }
+        .intro-section p { text-align: center; max-width: 800px; margin: 0 auto; color: var(--text-muted); }
+        .app-section { display: flex; align-items: center; gap: 40px; background: var(--bg-panel); padding: 40px; border-radius: 8px; border: 1px solid var(--border-color); }
+        .app-text h2 { font-size: 36px; color: var(--accent-dark); }
+        .store-btn { display: inline-block; background: #e9ecef; color: var(--text-main); padding: 10px 20px; border-radius: 5px; margin-right: 10px; border: 1px solid var(--border-color); }
+        .store-btn:hover { background: #dce1e5; }
+        
+        /* --- TABLE STYLES --- */
+        .spot-container { display: flex; gap: 20px; padding: 30px 0; flex-wrap: wrap; }
+        .spot-box { flex: 1; min-width: 250px; background: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 8px; padding: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.04); }
+        .spot-box h3 { color: var(--accent-dark); margin: 0 0 10px 0; font-size: 18px; text-transform: uppercase; font-weight: 600; }
+        .spot-price { font-size: 34px; font-weight: bold; color: var(--up-text); margin-bottom: 5px; font-family: monospace; transition: color 0.3s; }
+        .table-wrap { background: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; overflow-x: auto; margin-bottom: 50px; }
+        .trading-table { width: 100%; border-collapse: collapse; }
+        .trading-table th { background: #f1f3f5; color: var(--text-muted); padding: 15px; font-size: 12px; border-bottom: 1px solid var(--border-color); text-transform: uppercase; }
+        .trading-table td { padding: 15px; text-align: center; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
+        .cat-header td { background: #eef9fd; color: var(--accent-dark); text-align: left; font-weight: bold; font-size: 15px; padding: 12px 15px; }
+        .prod-cell { text-align: left; }
+        .prod-cell strong { color: var(--accent-dark); font-size: 15px; }
+        .sub-text { font-size: 12px; color: var(--text-muted); display: block; margin-top: 4px;}
+        .price-box { background: #f8f9fa; color: var(--text-main); font-size: 22px; font-weight: bold; padding: 10px; border-radius: 3px; border: 1px solid var(--border-color); display: inline-block; min-width: 110px; font-family: monospace; }
+        .qty-input { width: 70px; background: var(--bg-panel); color: var(--accent-dark); border: 1px solid var(--border-color); padding: 10px; text-align: center; font-weight: bold; font-size: 16px; border-radius: 3px; }
+
+        /* --- FLASHING ANIMATIONS FOR BRIGHT THEME --- */
+        @keyframes flashGreen { 0% { background: var(--up-bg-flash); } 100% { background: #f8f9fa; } }
+        @keyframes flashRed { 0% { background: var(--down-bg-flash); } 100% { background: #f8f9fa; } }
+        .flash-up { animation: flashGreen 1s ease-out forwards; }
+        .flash-down { animation: flashRed 1s ease-out forwards; }
+
+        /* --- INTERNAL PAGES --- */
+        .internal-page { padding: 40px 0; }
+        .page-title { color: var(--accent-dark); font-size: 28px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 30px; display: inline-block; text-transform: uppercase; }
+        .info-card { background: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 8px; padding: 25px; margin-bottom: 20px;}
+        .info-card h3 { color: var(--accent-dark); margin-bottom: 10px;}
+
+        /* --- FOOTER --- */
+        footer { background: var(--accent-dark); color: #e0e0e0; padding: 50px 0 20px; font-size: 14px; margin-top: auto; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h3 { color: #ffffff; font-size: 18px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+        .footer-col p { margin-bottom: 10px; }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col a { color: #e0e0e0; transition: 0.3s; }
+        .footer-col a:hover { color: var(--accent); padding-left: 5px; }
+        .footer-col i { color: var(--accent); margin-right: 10px; width: 15px; text-align: center; }
+        .footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; color: #a0a0a0; }
+
+        /* Re-used styles */
+        .app-image .fa-mobile-alt, .app-text ul li i { color: var(--accent); }
+        .app-text ul { list-style: none; padding-left: 0; margin-bottom: 30px; }
+        .app-text li { margin-bottom: 10px; color: var(--text-main); }
+        .dash { color: #ccc; font-size: 22px; font-weight: bold; }
+        .book-btn { background: var(--wa-green); color: #fff; border: none; padding: 10px 15px; font-weight: bold; font-size: 13px; border-radius: 3px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 auto; transition: 0.2s; }
+        .book-btn:hover { background: #1ebd50; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .app-section { flex-direction: column; text-align: center; }
+            .app-image .fa-mobile-alt { font-size: 120px; margin-bottom: 10px; }
+            .app-text ul li { text-align: left; display: inline-block; width: 100%; max-width: 300px;}
+        }
+        @media (max-width: 768px) {
+            .main-nav ul { display: none; flex-direction: column; width: 100%; position: absolute; top: 100%; left: 0; background: var(--bg-header); border-bottom: 1px solid var(--border-color); }
+            .main-nav ul.active { display: flex; }
+            .hamburger { display: inline-block; }
+            .btn-outline { display: none; }
+            .dropdown:hover .dropdown-content { display: none; }
+            .dropdown.active .dropdown-content { display: block; position: static; box-shadow: none; border: none; }
+            .hero-banner h1 { font-size: 32px; }
+            .hero-banner p { font-size: 16px; }
+            .trading-table th, .trading-table td { font-size: 12px; padding: 10px 5px; }
+            .price-box { min-width: 75px; font-size: 16px; padding: 6px;}
+            .qty-input { width: 60px; padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR (CLOCK) -->
+    <div class="top-bar">
+        <div class="container" style="display: flex; justify-content: space-between;">
+            <div>Welcome to Doit Industries</div>
+            <div id="clock">Mon 00:00:00 PM</div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="main-header">
+        <div class="container header-flex">
+            <div class="logo-area" onclick="showPage('view-home')" style="cursor:pointer;">
+                <div class="logo-text">
+                    <span style="color: #00aae4;">Doit</span>
+                    <i class="fas fa-handshake handshake-icon"></i>
+                    <span style="color: #002244;">Trade</span>
+                    <sup style="font-size: 14px; margin-left:2px; align-self:flex-start;">TM</sup>
+                </div>
+            </div>
+            <div class="login-area" style="display:flex; align-items:center;">
+                <button class="btn-primary">LOGIN</button>
+                <button class="btn-outline">REGISTER</button>
+                <i class="fas fa-bars hamburger" onclick="toggleMobileMenu()"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION MENU -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul id="navMenu">
+                <li><a onclick="showPage('view-home')" id="nav-home" class="active">Home</a></li>
+                <li><a onclick="showPage('view-liverates')" id="nav-liverates">Live Rates & Products</a></li>
+                <li class="dropdown" id="products-dropdown">
+                    <a href="javascript:void(0);">Products <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+                    <div class="dropdown-content">
+                        <a onclick="showPage('view-rhodoit')">RhoDoit Solutions</a>
+                        <a onclick="showPage('view-metdoit')">MetDoit Alloys</a>
+                        <a onclick="showPage('view-platinum')">Platinum Products</a>
+                        <a onclick="showPage('view-palladium')">Palladium Products</a>
+                    </div>
+                </li>
+                <li><a onclick="showPage('view-kyc')" id="nav-kyc">KYC</a></li>
+                <li><a onclick="showPage('view-bank')" id="nav-bank">Bank Details</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- MARQUEE -->
+    <div class="marquee-wrap">
+        <div class="container" style="display:flex; align-items:center;">
+            <div class="marquee-label">LIVE UPDATES</div>
+            <marquee>Live Booking Open. Best rates for Platinum, Palladium, and Rhodium. For bulk booking call dealing desk: +91-8828851160. Official Android & iOS App is Live!</marquee>
+        </div>
+    </div>
+
+    <!-- VIEW 1: NEW HOME PAGE -->
+    <div id="view-home" class="page-view active">
+        <section class="hero-banner">
+            <h1>India's Premier PGM & Alloy Trading Platform</h1>
+            <p>Live Industrial Rates For Rhodium, Palladium And Platinum. Authorized suppliers of Metdoit™</p>
+            <div>
+                <button class="btn-primary" onclick="showPage('view-liverates')">View Live Rates</button>
+                <button class="btn-outline" onclick="document.getElementById('app-section-id').scrollIntoView({ behavior: 'smooth' });">Download App</button>
+            </div>
+        </section>
+        <section class="intro-section">
+            <div class="container">
+                <h2>Welcome to Doit Trade (Doit Industries Limited)</h2>
+                <p>We are a specialized trading house catering to Jewelry Manufacturers and Investors. Unlike traditional dealers, we offer a complete range of precious metals—from Industrial PGMs (Platinum Group Metals) to Manufacturing Alloys.</p>
+            </div>
+        </section>
+        <section class="app-section-wrap" id="app-section-id">
+            <div class="container"><div class="app-section">
+                <div class="app-image"><i class="fas fa-mobile-alt" style="font-size: 250px;"></i></div>
+                <div class="app-text">
+                    <h2>Trade Smart. Trade Fast.</h2>
+                    <p>Get real-time spot rates and lock prices instantly with the Doit Trade Mobile App.</p>
+                    <ul>
+                        <li><i class="fas fa-rocket"></i> Live Rhodium, Platinum & Palladium rates</li>
+                        <li><i class="fas fa-bell"></i> Custom Rate Alerts</li>
+                        <li><i class="fas fa-chart-line"></i> Easy Booking & Order Tracking</li>
+                    </ul>
+                    <a href="#" class="store-btn"><i class="fab fa-google-play"></i> Google Play Store</a>
+                    <a href="#" class="store-btn"><i class="fab fa-apple"></i> Apple App Store</a>
+                </div>
+            </div></div>
+        </section>
+    </div>
+
+    <!-- VIEW 2: LIVE RATES (ALL PRODUCTS) -->
+    <div id="view-liverates" class="page-view">
+        <div class="container" style="padding-top: 20px;">
+            <div class="spot-container">
+                <div class="spot-box">
+                    <h3>RHODIUM</h3>
+                    <div class="spot-price" id="spot-rh">35,000</div>
+                    <div class="spot-hl" id="spot-rh-hl">L: 30000 | H: 35000</div>
+                </div>
+                <div class="spot-box">
+                    <h3>PALLADIUM</h3>
+                    <div class="spot-price" id="spot-pd">6,000</div>
+                    <div class="spot-hl" id="spot-pd-hl">L: 5800 | H: 6000</div>
+                </div>
+                <div class="spot-box">
+                    <h3>PLATINUM</h3>
+                    <div class="spot-price" id="spot-pt">8,500</div>
+                    <div class="spot-hl" id="spot-pt-hl">L: 8000 | H: 8500</div>
+                </div>
+            </div>
+            
+            <div class="table-wrap">
+                <table class="trading-table">
+                    <thead>
+                        <tr><th class="left">PRODUCTS</th><th>SELL (WE BUY)</th><th>BUY (WE SELL)</th><th>QTY</th><th>ACTION</th></tr>
+                    </thead>
+                    <tbody>
+                        <!-- PGM METALS -->
+                        <tr class="cat-header"><td colspan="5">PGM - PLATINUM GROUP METALS (Rates per Gram)</td></tr>
+                        <tr>
+                            <td class="prod-cell"><strong>Rhodium 999+ (Rh)</strong><br><span class="sub-text">Trade Unit: 10 Gms | Delivery: T+2</span></td>
+                            <td><div class="price-box" id="sell-rh">30000</div></td>
+                            <td><div class="price-box" id="buy-rh">35000</div></td>
+                            <td><input type="number" id="qty-rh999" value="10" min="10" step="10" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('Rhodium 999+', 35000, 'qty-rh999')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>Palladium 999+ (Pd)</strong><br><span class="sub-text">Trade Unit: 10 Gms | Delivery: T+2</span></td>
+                            <td><div class="price-box" id="sell-pd">5800</div></td>
+                            <td><div class="price-box" id="buy-pd">6000</div></td>
+                            <td><input type="number" id="qty-pd999" value="10" min="10" step="10" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('Palladium 999+', 6000, 'qty-pd999')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>Platinum 999+ (Pt)</strong><br><span class="sub-text">Trade Unit: 10 Gms | Delivery: T+2</span></td>
+                            <td><div class="price-box" id="sell-pt">8000</div></td>
+                            <td><div class="price-box" id="buy-pt">8500</div></td>
+                            <td><input type="number" id="qty-pt999" value="10" min="10" step="10" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('Platinum 999+', 8500, 'qty-pt999')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+
+                        <!-- RHODOIT SOLUTIONS -->
+                        <tr class="cat-header"><td colspan="5">RHODOIT™ - PLATING SOLUTIONS (Rates per Unit)</td></tr>
+                        <tr>
+                            <td class="prod-cell"><strong>RhoDoit WB Solution (2gm)</strong><br><span class="sub-text">Packing: 100ml Bottle | Delivery: T+2</span></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">85000</div></td>
+                            <td><input type="number" id="qty-rdwb2" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('RhoDoit WB 2gm', 85000, 'qty-rdwb2')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>RhoDoit WPN Solution (2gm)</strong><br><span class="sub-text">Packing: 100ml Bottle | Delivery: T+2</span></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">85000</div></td>
+                            <td><input type="number" id="qty-rdwpn2" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('RhoDoit WPN 2gm', 85000, 'qty-rdwpn2')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>RhoDoit WPN Solution (1gm)</strong><br><span class="sub-text">Packing: 100ml Bottle | Delivery: T+2</span></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">44000</div></td>
+                            <td><input type="number" id="qty-rdwpn1" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('RhoDoit WPN 1gm', 44000, 'qty-rdwpn1')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>RhoDoit BB Solution (2gm)</strong><br><span class="sub-text">Packing: 1 Ltr Bottle | Delivery: T+2</span></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">87500</div></td>
+                            <td><input type="number" id="qty-rdbb2" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('RhoDoit BB 2gm', 87500, 'qty-rdbb2')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>Additive 100ml</strong><br><span class="sub-text">Packing: 100ml Bottle | Delivery: T+2</span></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">550</div></td>
+                            <td><input type="number" id="qty-additive" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('Additive 100ml', 550, 'qty-additive')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        
+                        <!-- METDOIT MASTER ALLOYS -->
+                        <tr class="cat-header"><td colspan="5">METDOIT™ - MASTER ALLOYS (Rates per 100 Gms)</td></tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRYS 20% - 14Kt Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">8056</div></td>
+                            <td><input type="number" id="qty-prys20" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRYS 20% - 14Kt Alloy', 8056, 'qty-prys20')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>SPYS 22% - 18/22 Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">8780</div></td>
+                            <td><input type="number" id="qty-spys22" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('SPYS 22% Alloy', 8780, 'qty-spys22')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRYS 31% - 18Kt Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">11992</div></td>
+                            <td><input type="number" id="qty-prys31" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRYS 31% - 18Kt Alloy', 11992, 'qty-prys31')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PLY 82 - Gold Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">990</div></td>
+                            <td><input type="number" id="qty-ply82" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PLY 82 - Gold Alloy', 990, 'qty-ply82')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>STY 93 - Gold Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">550</div></td>
+                            <td><input type="number" id="qty-sty93" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('STY 93 - Gold Alloy', 550, 'qty-sty93')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRY82 - Gold Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">990</div></td>
+                            <td><input type="number" id="qty-pry82" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRY82 - Gold Alloy', 990, 'qty-pry82')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRS64 - Silver Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">550</div></td>
+                            <td><input type="number" id="qty-prs64" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRS64 - Silver Alloy', 550, 'qty-prs64')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRS66 - Silver Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">450</div></td>
+                            <td><input type="number" id="qty-prs66" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRS66 - Silver Alloy', 450, 'qty-prs66')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>SPB91 - Brass Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">207</div></td>
+                            <td><input type="number" id="qty-spb91" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('SPB91 - Brass Alloy', 207, 'qty-spb91')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>SPB84 - Brass Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">270</div></td>
+                            <td><input type="number" id="qty-spb84" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('SPB84 - Brass Alloy', 270, 'qty-spb84')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- VIEW 3: RHODOIT CATALOG -->
+    <div id="view-rhodoit" class="page-view">
+        <div class="container internal-page">
+            <h2 class="page-title">RhoDoit™ Solutions</h2>
+            <p style="margin-bottom: 20px; color: var(--text-muted);">Premium ready-to-use chemical solutions for electroplating applications.</p>
+            <div class="table-wrap">
+                <table class="trading-table">
+                    <thead><tr><th class="left">PRODUCTS</th><th>PRICE</th><th>QTY</th><th>ACTION</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td class="prod-cell"><strong>RhoDoit WB Solution (2gm)</strong><br><span class="sub-text">Packing: 100ml Bottle | Delivery: T+2</span></td>
+                            <td><div class="price-box">85000</div></td>
+                            <td><input type="number" id="cat-qty-rdwb2" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('RhoDoit WB 2gm', 85000, 'cat-qty-rdwb2')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>RhoDoit WPN Solution (2gm)</strong><br><span class="sub-text">Packing: 100ml Bottle | Delivery: T+2</span></td>
+                            <td><div class="price-box">85000</div></td>
+                            <td><input type="number" id="cat-qty-rdwpn2" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('RhoDoit WPN 2gm', 85000, 'cat-qty-rdwpn2')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>RhoDoit WPN Solution (1gm)</strong><br><span class="sub-text">Packing: 100ml Bottle | Delivery: T+2</span></td>
+                            <td><div class="price-box">44000</div></td>
+                            <td><input type="number" id="cat-qty-rdwpn1" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('RhoDoit WPN 1gm', 44000, 'cat-qty-rdwpn1')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>RhoDoit BB Solution (2gm)</strong><br><span class="sub-text">Packing: 1 Ltr Bottle | Delivery: T+2</span></td>
+                            <td><div class="price-box">87500</div></td>
+                            <td><input type="number" id="cat-qty-rdbb2" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('RhoDoit BB 2gm', 87500, 'cat-qty-rdbb2')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>Additive 100ml</strong><br><span class="sub-text">Packing: 100ml Bottle | Delivery: T+2</span></td>
+                            <td><div class="price-box">550</div></td>
+                            <td><input type="number" id="cat-qty-add" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('Additive 100ml', 550, 'cat-qty-add')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW 4: METDOIT CATALOG -->
+    <div id="view-metdoit" class="page-view">
+        <div class="container internal-page">
+            <h2 class="page-title">MetDoit™ Master Alloys</h2>
+            <p style="margin-bottom: 20px; color: var(--text-muted);">High-performance pre-mix alloys for superior casting and mechanical work.</p>
+            <div class="table-wrap">
+                <table class="trading-table">
+                    <thead><tr><th class="left">PRODUCTS</th><th>PRICE / 100g</th><th>QTY</th><th>ACTION</th></tr></thead>
+                    <tbody>
+                        <tr class="cat-header"><td colspan="4">GOLD ALLOYS</td></tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRYS 20% - 14Kt Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="price-box">8056</div></td>
+                            <td><input type="number" id="cat-qty-prys20" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRYS 20% - 14Kt Alloy', 8056, 'cat-qty-prys20')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>SPYS 22% - 18/22 Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="price-box">8780</div></td>
+                            <td><input type="number" id="cat-qty-spys22" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('SPYS 22% Alloy', 8780, 'cat-qty-spys22')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRYS 31% - 18Kt Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="price-box">11992</div></td>
+                            <td><input type="number" id="cat-qty-prys31" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRYS 31% - 18Kt Alloy', 11992, 'cat-qty-prys31')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PLY 82 - Gold Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="price-box">990</div></td>
+                            <td><input type="number" id="cat-qty-ply82" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PLY 82 - Gold Alloy', 990, 'cat-qty-ply82')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>STY 93 - Gold Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="price-box">550</div></td>
+                            <td><input type="number" id="cat-qty-sty93" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('STY 93 - Gold Alloy', 550, 'cat-qty-sty93')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRY82 - Gold Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="price-box">990</div></td>
+                            <td><input type="number" id="cat-qty-pry82" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRY82 - Gold Alloy', 990, 'cat-qty-pry82')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+
+                        <tr class="cat-header"><td colspan="4">SILVER & BRASS ALLOYS</td></tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRS64 - Silver Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="price-box">550</div></td>
+                            <td><input type="number" id="cat-qty-prs64" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRS64 - Silver Alloy', 550, 'cat-qty-prs64')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRS66 - Silver Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="price-box">450</div></td>
+                            <td><input type="number" id="cat-qty-prs66" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRS66 - Silver Alloy', 450, 'cat-qty-prs66')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>SPB91 - Brass Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="price-box">207</div></td>
+                            <td><input type="number" id="cat-qty-spb91" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('SPB91 - Brass Alloy', 207, 'cat-qty-spb91')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>SPB84 - Brass Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td><div class="price-box">270</div></td>
+                            <td><input type="number" id="cat-qty-spb84" value="100" min="100" step="100" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('SPB84 - Brass Alloy', 270, 'cat-qty-spb84')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW 5: PLATINUM CATALOG -->
+    <div id="view-platinum" class="page-view">
+        <div class="container internal-page">
+            <h2 class="page-title">Platinum Products</h2>
+            <div class="info-card">
+                <h3>Current Base Ask Rate: ₹8,500 / GM</h3>
+                <p style="color: var(--text-muted); font-size: 14px;">*Note: Final billing will be calculated based on the live market rate at the exact time of booking confirmation.</p>
+            </div>
+            <div class="table-wrap">
+                <table class="trading-table">
+                    <thead><tr><th class="left">PRODUCTS</th><th>BASE PRICE</th><th>QTY (GMS)</th><th>ACTION</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td class="prod-cell"><strong>Platinum 999+ (Pt)</strong><br><span class="sub-text">Trade Unit: 10 Gms | Delivery: T+2</span></td>
+                            <td><div class="price-box">8500</div></td>
+                            <td><input type="number" id="cat-qty-pt999" value="10" min="10" step="10" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('Platinum 999+', 8500, 'cat-qty-pt999')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW 6: PALLADIUM CATALOG -->
+    <div id="view-palladium" class="page-view">
+        <div class="container internal-page">
+            <h2 class="page-title">Palladium Products</h2>
+            <div class="info-card">
+                <h3>Current Base Ask Rate: ₹6,000 / GM</h3>
+                <p style="color: var(--text-muted); font-size: 14px;">*Note: Final billing will be calculated based on the live market rate at the exact time of booking confirmation.</p>
+            </div>
+            <div class="table-wrap">
+                <table class="trading-table">
+                    <thead><tr><th class="left">PRODUCTS</th><th>BASE PRICE</th><th>QTY (GMS)</th><th>ACTION</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td class="prod-cell"><strong>Palladium 999+ (Pd)</strong><br><span class="sub-text">Trade Unit: 10 Gms | Delivery: T+2</span></td>
+                            <td><div class="price-box">6000</div></td>
+                            <td><input type="number" id="cat-qty-pd999" value="10" min="10" step="10" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('Palladium 999+', 6000, 'cat-qty-pd999')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- OTHER PAGE VIEWS (KYC & Bank) -->
+    <div id="view-kyc" class="page-view">
+        <div class="container internal-page">
+            <h2 class="page-title">KYC & Compliance</h2>
+            <div class="info-card">
+                <h3>Account Registration</h3>
+                <p>To start trading, please contact our support desk to receive your KYC registration package. Required documents include Company PAN, GST Certificate, and Authorized Signatory details.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="view-bank" class="page-view">
+        <div class="container internal-page">
+            <h2 class="page-title">Bank Details</h2>
+            <div class="info-card">
+                <h3>Doit Industries Limited</h3>
+                <p><strong>Bank Name:</strong> Kotak Mahindra Bank</p>
+                <p><strong>Account Number:</strong> 9711405715</p>
+                <p><strong>IFSC Code:</strong> KKBK0000643</p>
+                <p><strong>Branch:</strong> Andheri East, Mumbai</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Doit Trade</h3>
+                    <p>India's Premier Platinum Group Metals (PGMs) & Alloy Trading Platform. Authorized suppliers of Metdoit™ master alloys and RhoDoit™ chemical solutions.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a onclick="showPage('view-liverates')">Live Rates & Products</a></li>
+                        <li><a onclick="showPage('view-metdoit')">MetDoit Alloys</a></li>
+                        <li><a onclick="showPage('view-rhodoit')">RhoDoit Solutions</a></li>
+                        <li><a onclick="showPage('view-kyc')">KYC Compliance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul style="color: #a0a0a0;">
+                        <li><i class="fas fa-map-marker-alt"></i> Andheri East, Mumbai - 400093</li>
+                        <li><i class="fas fa-phone-alt"></i> Booking: +91-8828851160</li>
+                        <li><i class="fas fa-envelope"></i> sales@doitindustries.in</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2024 Doit Industries Limited. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- JAVASCRIPT LOGIC ---
+        function updateClock() {
+            const now = new Date();
+            const days =['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            let str = days[now.getDay()] + ' ' + now.toLocaleTimeString();
+            document.getElementById('clock').innerText = str;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        function toggleMobileMenu() {
+            const navMenu = document.querySelector('.main-nav ul');
+            navMenu.classList.toggle('active');
+            const productsDropdown = document.getElementById('products-dropdown');
+            productsDropdown.addEventListener('click', function(e){
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    this.classList.toggle('active');
+                }
+            });
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            document.querySelectorAll('.main-nav a').forEach(link => link.classList.remove('active'));
+            let navId = pageId.replace('view-', 'nav-');
+            if(document.getElementById(navId)) {
+                document.getElementById(navId).classList.add('active');
+            } else {
+                if(['view-rhodoit', 'view-metdoit', 'view-platinum', 'view-palladium'].includes(pageId)) {
+                    document.querySelector('#products-dropdown > a').classList.add('active');
+                }
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (window.innerWidth <= 768) {
+                document.querySelector('.main-nav ul').classList.remove('active');
+            }
+        }
+        
+        // --- WHATSAPP BOOKING FUNCTIONALITY ---
+        function bookWA(productName, price, qtyElementId) {
+            // !!! IMPORTANT: Change this to your actual business WhatsApp number !!!
+            const waNumber = "918828851160"; // Updated based on marquee info
+
+            let cleanPrice = parseInt(String(price).replace(/,/g, ''));
+            let qty = document.getElementById(qtyElementId).value;
+            let total = cleanPrice * qty;
+            
+            let msg = `Hello Doit Trade,\nI would like to book an order:\n\n*Product:* ${productName}\n*Rate:* ₹${cleanPrice.toLocaleString('en-IN')}\n*Quantity:* ${qty}\n*Approx Value:* ₹${total.toLocaleString('en-IN')}\n\nPlease confirm my booking.`;
+            
+            let waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+            window.open(waLink, '_blank');
+        }
+
+        // --- LIVE MARKET SIMULATION LOGIC ---
+        function updateMarket() {
+            const liveMetals = { 
+                'rh': { base: 35000, spread: 5000, change: 100 }, 
+                'pd': { base: 6000, spread: 200, change: 20 }, 
+                'pt': { base: 8500, spread: 500, change: 25 }
+            };
+
+            for(const key in liveMetals) {
+                const buyEl = document.getElementById(`buy-${key}`);
+                const sellEl = document.getElementById(`sell-${key}`);
+                if (buyEl && Math.random() > 0.5) {
+                    let currentPrice = parseInt(buyEl.innerText.replace(/,/g, ''));
+                    let change = Math.floor(Math.random() * liveMetals[key].change * 2) - liveMetals[key].change;
+                    let newPrice = currentPrice + change;
+                    
+                    updateCell(buyEl.id, newPrice, change);
+                    if (sellEl) updateCell(sellEl.id, newPrice - liveMetals[key].spread, change);
+                    
+                    const spotEl = document.getElementById(`spot-${key}`);
+                    if (spotEl) updateCell(spotEl.id, newPrice, change);
+                }
+            }
+        }
+
+        function updateCell(id, value, change) {
+            let el = document.getElementById(id);
+            if(el) {
+                let parent = el.closest('.price-box') || el;
+                parent.classList.remove('flash-up', 'flash-down');
+                void parent.offsetWidth; // Trigger reflow to restart animation
+                parent.classList.add(change >= 0 ? 'flash-up' : 'flash-down');
+                if (el.classList.contains('spot-price')) {
+                    el.style.color = change >= 0 ? 'var(--up-text)' : 'var(--down-text)';
+                }
+                el.innerText = value.toLocaleString('en-IN');
+            }
+        }
+        setInterval(updateMarket, 2500);
+    </script>
+</body>
+</html>
