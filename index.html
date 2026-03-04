@@ -127,7 +127,10 @@
         .app-text li { margin-bottom: 10px; color: var(--text-main); }
         .dash { color: #ccc; font-size: 22px; font-weight: bold; }
         .book-btn { background: var(--wa-green); color: #fff; border: none; padding: 10px 15px; font-weight: bold; font-size: 13px; border-radius: 3px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 auto; transition: 0.2s; }
+        .book-btn.enquire { background: var(--accent); }
+        .book-btn.enquire:hover { background: var(--accent-hover); }
         .book-btn:hover { background: #1ebd50; }
+        .on-request-text { font-weight: bold; color: var(--accent-dark); }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
@@ -248,18 +251,18 @@
             <div class="spot-container">
                 <div class="spot-box">
                     <h3>RHODIUM</h3>
-                    <div class="spot-price" id="spot-rh">35,000</div>
-                    <div class="spot-hl" id="spot-rh-hl">L: 30000 | H: 35000</div>
+                    <div class="spot-price" id="spot-rh">36,424</div>
+                    <div class="spot-hl" id="spot-rh-hl">L: 36000 | H: 37000</div>
                 </div>
                 <div class="spot-box">
                     <h3>PALLADIUM</h3>
-                    <div class="spot-price" id="spot-pd">6,000</div>
-                    <div class="spot-hl" id="spot-pd-hl">L: 5800 | H: 6000</div>
+                    <div class="spot-price" id="spot-pd">13,904</div>
+                    <div class="spot-hl" id="spot-pd-hl">L: 13800 | H: 14000</div>
                 </div>
                 <div class="spot-box">
                     <h3>PLATINUM</h3>
-                    <div class="spot-price" id="spot-pt">8,500</div>
-                    <div class="spot-hl" id="spot-pt-hl">L: 8000 | H: 8500</div>
+                    <div class="spot-price" id="spot-pt">6,310</div>
+                    <div class="spot-hl" id="spot-pt-hl">L: 6200 | H: 6400</div>
                 </div>
             </div>
             
@@ -273,24 +276,24 @@
                         <tr class="cat-header"><td colspan="5">PGM - PLATINUM GROUP METALS (Rates per Gram)</td></tr>
                         <tr>
                             <td class="prod-cell"><strong>Rhodium 999+ (Rh)</strong><br><span class="sub-text">Trade Unit: 10 Gms | Delivery: T+2</span></td>
-                            <td><div class="price-box" id="sell-rh">30000</div></td>
-                            <td><div class="price-box" id="buy-rh">35000</div></td>
+                            <td><div class="price-box" id="sell-rh">31424</div></td>
+                            <td><div class="price-box" id="buy-rh">36424</div></td>
                             <td><input type="number" id="qty-rh999" value="10" min="10" step="10" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('Rhodium 999+', 35000, 'qty-rh999')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td><button class="book-btn" onclick="bookWA('Rhodium 999+', 36424, 'qty-rh999')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
                         </tr>
                         <tr>
                             <td class="prod-cell"><strong>Palladium 999+ (Pd)</strong><br><span class="sub-text">Trade Unit: 10 Gms | Delivery: T+2</span></td>
-                            <td><div class="price-box" id="sell-pd">5800</div></td>
-                            <td><div class="price-box" id="buy-pd">6000</div></td>
+                            <td><div class="price-box" id="sell-pd">13887</div></td>
+                            <td><div class="price-box" id="buy-pd">13904</div></td>
                             <td><input type="number" id="qty-pd999" value="10" min="10" step="10" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('Palladium 999+', 6000, 'qty-pd999')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td><button class="book-btn" onclick="bookWA('Palladium 999+', 13904, 'qty-pd999')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
                         </tr>
                         <tr>
                             <td class="prod-cell"><strong>Platinum 999+ (Pt)</strong><br><span class="sub-text">Trade Unit: 10 Gms | Delivery: T+2</span></td>
-                            <td><div class="price-box" id="sell-pt">8000</div></td>
-                            <td><div class="price-box" id="buy-pt">8500</div></td>
+                            <td><div class="price-box" id="sell-pt">6210</div></td>
+                            <td><div class="price-box" id="buy-pt">6310</div></td>
                             <td><input type="number" id="qty-pt999" value="10" min="10" step="10" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('Platinum 999+', 8500, 'qty-pt999')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td><button class="book-btn" onclick="bookWA('Platinum 999+', 6310, 'qty-pt999')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
                         </tr>
 
                         <!-- RHODOIT SOLUTIONS -->
@@ -332,76 +335,141 @@
                         </tr>
                         
                         <!-- METDOIT MASTER ALLOYS -->
-                        <tr class="cat-header"><td colspan="5">METDOIT™ - MASTER ALLOYS (Rates per 100 Gms)</td></tr>
+                        <tr class="cat-header"><td colspan="5">METDOIT™ - MASTER ALLOYS (Rates per 500g)</td></tr>
+                        <tr><td colspan="5" style="text-align:left; font-weight:bold; padding: 8px 15px; background-color: #f0f0f0;">22 KT INVESTMENT CASTING ALLOYS</td></tr>
                         <tr>
-                            <td class="prod-cell"><strong>PRYS 20% - 14Kt Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td class="prod-cell"><strong>PRY82</strong></td>
                             <td><div class="dash">-</div></td>
-                            <td><div class="price-box">8056</div></td>
-                            <td><input type="number" id="qty-prys20" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('PRYS 20% - 14Kt Alloy', 8056, 'qty-prys20')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td><div class="price-box">9900</div></td>
+                            <td><input type="number" id="qty-pry82" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRY82 Alloy', 9900, 'qty-pry82')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
                         </tr>
                         <tr>
-                            <td class="prod-cell"><strong>SPYS 22% - 18/22 Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td class="prod-cell"><strong>PRYS10</strong></td>
                             <td><div class="dash">-</div></td>
-                            <td><div class="price-box">8780</div></td>
-                            <td><input type="number" id="qty-spys22" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('SPYS 22% Alloy', 8780, 'qty-spys22')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td class="on-request-text">ON REQUEST</td>
+                            <td>-</td>
+                            <td><button class="book-btn enquire" onclick="enquireWA('PRYS10 Alloy')"><i class="fas fa-comment-dots"></i> ENQUIRE</button></td>
+                        </tr>
+                         <tr>
+                            <td class="prod-cell"><strong>PRYS38</strong></td>
+                            <td><div class="dash">-</div></td>
+                            <td class="on-request-text">ON REQUEST</td>
+                            <td>-</td>
+                            <td><button class="book-btn enquire" onclick="enquireWA('PRYS38 Alloy')"><i class="fas fa-comment-dots"></i> ENQUIRE</button></td>
+                        </tr>
+
+                        <tr><td colspan="5" style="text-align:left; font-weight:bold; padding: 8px 15px; background-color: #f0f0f0;">22 KT MECHANICAL WORK ALLOYS</td></tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PLY82</strong></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">9900</div></td>
+                            <td><input type="number" id="qty-ply82" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PLY82 Alloy', 9900, 'qty-ply82')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
                         </tr>
                         <tr>
-                            <td class="prod-cell"><strong>PRYS 31% - 18Kt Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td class="prod-cell"><strong>STY93</strong></td>
                             <td><div class="dash">-</div></td>
-                            <td><div class="price-box">11992</div></td>
-                            <td><input type="number" id="qty-prys31" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('PRYS 31% - 18Kt Alloy', 11992, 'qty-prys31')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td><div class="price-box">6300</div></td>
+                            <td><input type="number" id="qty-sty93" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('STY93 Alloy', 6300, 'qty-sty93')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
                         </tr>
                         <tr>
-                            <td class="prod-cell"><strong>PLY 82 - Gold Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td class="prod-cell"><strong>STYS05</strong></td>
                             <td><div class="dash">-</div></td>
-                            <td><div class="price-box">990</div></td>
-                            <td><input type="number" id="qty-ply82" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('PLY 82 - Gold Alloy', 990, 'qty-ply82')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td class="on-request-text">ON REQUEST</td>
+                            <td>-</td>
+                            <td><button class="book-btn enquire" onclick="enquireWA('STYS05 Alloy')"><i class="fas fa-comment-dots"></i> ENQUIRE</button></td>
+                        </tr>
+                        
+                        <tr><td colspan="5" style="text-align:left; font-weight:bold; padding: 8px 15px; background-color: #f0f0f0;">ROSE GOLD ALLOYS</td></tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRR93P</strong></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">43000</div></td>
+                            <td><input type="number" id="qty-prr93p" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRR93P Alloy', 43000, 'qty-prr93p')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
                         </tr>
                         <tr>
-                            <td class="prod-cell"><strong>STY 93 - Gold Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td class="prod-cell"><strong>STR93P</strong></td>
                             <td><div class="dash">-</div></td>
-                            <td><div class="price-box">550</div></td>
-                            <td><input type="number" id="qty-sty93" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('STY 93 - Gold Alloy', 550, 'qty-sty93')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td><div class="price-box">43000</div></td>
+                            <td><input type="number" id="qty-str93p" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('STR93P Alloy', 43000, 'qty-str93p')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
                         </tr>
                         <tr>
-                            <td class="prod-cell"><strong>PRY82 - Gold Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td class="prod-cell"><strong>PRR87</strong></td>
                             <td><div class="dash">-</div></td>
-                            <td><div class="price-box">990</div></td>
-                            <td><input type="number" id="qty-pry82" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('PRY82 - Gold Alloy', 990, 'qty-pry82')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td><div class="price-box">40000</div></td>
+                            <td><input type="number" id="qty-prr87" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRR87 Alloy', 40000, 'qty-prr87')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
+                        </tr>
+
+                        <tr><td colspan="5" style="text-align:left; font-weight:bold; padding: 8px 15px; background-color: #f0f0f0;">WHITE GOLD ALLOYS</td></tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRW20</strong></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">12600</div></td>
+                            <td><input type="number" id="qty-prw20" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRW20 Alloy', 12600, 'qty-prw20')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
                         </tr>
                         <tr>
-                            <td class="prod-cell"><strong>PRS64 - Silver Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td class="prod-cell"><strong>PRW30</strong></td>
                             <td><div class="dash">-</div></td>
-                            <td><div class="price-box">550</div></td>
-                            <td><input type="number" id="qty-prs64" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('PRS64 - Silver Alloy', 550, 'qty-prs64')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td><div class="price-box">12600</div></td>
+                            <td><input type="number" id="qty-prw30" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRW30 Alloy', 12600, 'qty-prw30')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
                         </tr>
                         <tr>
-                            <td class="prod-cell"><strong>PRS66 - Silver Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td class="prod-cell"><strong>STW17</strong></td>
                             <td><div class="dash">-</div></td>
-                            <td><div class="price-box">450</div></td>
-                            <td><input type="number" id="qty-prs66" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('PRS66 - Silver Alloy', 450, 'qty-prs66')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td><div class="price-box">22500</div></td>
+                            <td><input type="number" id="qty-stw17" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('STW17 Alloy', 22500, 'qty-stw17')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
+                        </tr>
+
+                        <tr><td colspan="5" style="text-align:left; font-weight:bold; padding: 8px 15px; background-color: #f0f0f0;">SILVER, BRASS & COPPER ALLOYS</td></tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRS64 - Silver Alloy</strong></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">6300</div></td>
+                            <td><input type="number" id="qty-prs64" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRS64 Silver Alloy', 6300, 'qty-prs64')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
                         </tr>
                         <tr>
-                            <td class="prod-cell"><strong>SPB91 - Brass Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td class="prod-cell"><strong>PRS66 - Silver Alloy</strong></td>
                             <td><div class="dash">-</div></td>
-                            <td><div class="price-box">207</div></td>
-                            <td><input type="number" id="qty-spb91" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('SPB91 - Brass Alloy', 207, 'qty-spb91')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td><div class="price-box">4500</div></td>
+                            <td><input type="number" id="qty-prs66" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRS66 Silver Alloy', 4500, 'qty-prs66')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
                         </tr>
                         <tr>
-                            <td class="prod-cell"><strong>SPB84 - Brass Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
+                            <td class="prod-cell"><strong>SPB91 - Brass Alloy</strong></td>
                             <td><div class="dash">-</div></td>
-                            <td><div class="price-box">270</div></td>
-                            <td><input type="number" id="qty-spb84" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('SPB84 - Brass Alloy', 270, 'qty-spb84')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td><div class="price-box">2070</div></td>
+                            <td><input type="number" id="qty-spb91" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('SPB91 Brass Alloy', 2070, 'qty-spb91')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>SPB84 - Brass Alloy</strong></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">3600</div></td>
+                            <td><input type="number" id="qty-spb84" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('SPB84 Brass Alloy', 3600, 'qty-spb84')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
+                        </tr>
+                         <tr>
+                            <td class="prod-cell"><strong>CU OF STICK</strong></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">2250</div></td>
+                            <td><input type="number" id="qty-custick" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('CU OF STICK', 2250, 'qty-custick')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>CU OF DROP</strong></td>
+                            <td><div class="dash">-</div></td>
+                            <td><div class="price-box">2700</div></td>
+                            <td><input type="number" id="qty-cudrop" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('CU OF DROP', 2700, 'qty-cudrop')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -461,70 +529,124 @@
             <p style="margin-bottom: 20px; color: var(--text-muted);">High-performance pre-mix alloys for superior casting and mechanical work.</p>
             <div class="table-wrap">
                 <table class="trading-table">
-                    <thead><tr><th class="left">PRODUCTS</th><th>PRICE / 100g</th><th>QTY</th><th>ACTION</th></tr></thead>
+                     <thead><tr><th class="left">PRODUCTS</th><th>PRICE / Kg</th><th>QTY (Kg)</th><th>ACTION</th></tr></thead>
                     <tbody>
-                        <tr class="cat-header"><td colspan="4">GOLD ALLOYS</td></tr>
+                        <tr class="cat-header"><td colspan="4">22 KT INVESTMENT CASTING ALLOYS</td></tr>
                         <tr>
-                            <td class="prod-cell"><strong>PRYS 20% - 14Kt Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
-                            <td><div class="price-box">8056</div></td>
-                            <td><input type="number" id="cat-qty-prys20" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('PRYS 20% - 14Kt Alloy', 8056, 'cat-qty-prys20')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td class="prod-cell"><strong>PRY82</strong></td>
+                            <td><div class="price-box">9900</div></td>
+                            <td><input type="number" id="cat-qty-pry82" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRY82 Alloy', 9900, 'cat-qty-pry82')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
                         </tr>
                         <tr>
-                            <td class="prod-cell"><strong>SPYS 22% - 18/22 Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
-                            <td><div class="price-box">8780</div></td>
-                            <td><input type="number" id="cat-qty-spys22" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('SPYS 22% Alloy', 8780, 'cat-qty-spys22')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td class="prod-cell"><strong>PRYS10</strong></td>
+                            <td class="on-request-text">ON REQUEST</td>
+                            <td>-</td>
+                            <td><button class="book-btn enquire" onclick="enquireWA('PRYS10 Alloy')"><i class="fas fa-comment-dots"></i> ENQUIRE</button></td>
                         </tr>
-                        <tr>
-                            <td class="prod-cell"><strong>PRYS 31% - 18Kt Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
-                            <td><div class="price-box">11992</div></td>
-                            <td><input type="number" id="cat-qty-prys31" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('PRYS 31% - 18Kt Alloy', 11992, 'cat-qty-prys31')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
-                        </tr>
-                        <tr>
-                            <td class="prod-cell"><strong>PLY 82 - Gold Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
-                            <td><div class="price-box">990</div></td>
-                            <td><input type="number" id="cat-qty-ply82" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('PLY 82 - Gold Alloy', 990, 'cat-qty-ply82')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
-                        </tr>
-                        <tr>
-                            <td class="prod-cell"><strong>STY 93 - Gold Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
-                            <td><div class="price-box">550</div></td>
-                            <td><input type="number" id="cat-qty-sty93" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('STY 93 - Gold Alloy', 550, 'cat-qty-sty93')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
-                        </tr>
-                        <tr>
-                            <td class="prod-cell"><strong>PRY82 - Gold Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
-                            <td><div class="price-box">990</div></td>
-                            <td><input type="number" id="cat-qty-pry82" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('PRY82 - Gold Alloy', 990, 'cat-qty-pry82')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                         <tr>
+                            <td class="prod-cell"><strong>PRYS38</strong></td>
+                            <td class="on-request-text">ON REQUEST</td>
+                            <td>-</td>
+                            <td><button class="book-btn enquire" onclick="enquireWA('PRYS38 Alloy')"><i class="fas fa-comment-dots"></i> ENQUIRE</button></td>
                         </tr>
 
-                        <tr class="cat-header"><td colspan="4">SILVER & BRASS ALLOYS</td></tr>
+                        <tr class="cat-header"><td colspan="4">22 KT MECHANICAL WORK ALLOYS</td></tr>
                         <tr>
-                            <td class="prod-cell"><strong>PRS64 - Silver Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
-                            <td><div class="price-box">550</div></td>
-                            <td><input type="number" id="cat-qty-prs64" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('PRS64 - Silver Alloy', 550, 'cat-qty-prs64')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td class="prod-cell"><strong>PLY82</strong></td>
+                            <td><div class="price-box">9900</div></td>
+                            <td><input type="number" id="cat-qty-ply82" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PLY82 Alloy', 9900, 'cat-qty-ply82')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
                         </tr>
                         <tr>
-                            <td class="prod-cell"><strong>PRS66 - Silver Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
-                            <td><div class="price-box">450</div></td>
-                            <td><input type="number" id="cat-qty-prs66" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('PRS66 - Silver Alloy', 450, 'cat-qty-prs66')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td class="prod-cell"><strong>STY93</strong></td>
+                            <td><div class="price-box">6300</div></td>
+                            <td><input type="number" id="cat-qty-sty93" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('STY93 Alloy', 6300, 'cat-qty-sty93')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
                         </tr>
                         <tr>
-                            <td class="prod-cell"><strong>SPB91 - Brass Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
-                            <td><div class="price-box">207</div></td>
-                            <td><input type="number" id="cat-qty-spb91" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('SPB91 - Brass Alloy', 207, 'cat-qty-spb91')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td class="prod-cell"><strong>STYS05</strong></td>
+                            <td class="on-request-text">ON REQUEST</td>
+                            <td>-</td>
+                            <td><button class="book-btn enquire" onclick="enquireWA('STYS05 Alloy')"><i class="fas fa-comment-dots"></i> ENQUIRE</button></td>
+                        </tr>
+                        
+                        <tr class="cat-header"><td colspan="4">ROSE GOLD ALLOYS</td></tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRR93P</strong></td>
+                            <td><div class="price-box">43000</div></td>
+                            <td><input type="number" id="cat-qty-prr93p" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRR93P Alloy', 43000, 'cat-qty-prr93p')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
                         </tr>
                         <tr>
-                            <td class="prod-cell"><strong>SPB84 - Brass Alloy</strong><br><span class="sub-text">Delivery: 5 Days | Min Qty: 100 Gms</span></td>
-                            <td><div class="price-box">270</div></td>
-                            <td><input type="number" id="cat-qty-spb84" value="100" min="100" step="100" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('SPB84 - Brass Alloy', 270, 'cat-qty-spb84')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td class="prod-cell"><strong>STR93P</strong></td>
+                            <td><div class="price-box">43000</div></td>
+                            <td><input type="number" id="cat-qty-str93p" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('STR93P Alloy', 43000, 'cat-qty-str93p')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRR87</strong></td>
+                            <td><div class="price-box">40000</div></td>
+                            <td><input type="number" id="cat-qty-prr87" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRR87 Alloy', 40000, 'cat-qty-prr87')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
+                        </tr>
+
+                        <tr class="cat-header"><td colspan="4">WHITE GOLD ALLOYS</td></tr>
+                         <tr>
+                            <td class="prod-cell"><strong>PRW20</strong></td>
+                            <td><div class="price-box">12600</div></td>
+                            <td><input type="number" id="cat-qty-prw20" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRW20 Alloy', 12600, 'cat-qty-prw20')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRW30</strong></td>
+                            <td><div class="price-box">12600</div></td>
+                            <td><input type="number" id="cat-qty-prw30" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRW30 Alloy', 12600, 'cat-qty-prw30')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>STW17</strong></td>
+                            <td><div class="price-box">22500</div></td>
+                            <td><input type="number" id="cat-qty-stw17" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('STW17 Alloy', 22500, 'cat-qty-stw17')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
+                        </tr>
+
+                        <tr class="cat-header"><td colspan="4">SILVER, BRASS & COPPER ALLOYS</td></tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRS64 - Silver Alloy</strong></td>
+                            <td><div class="price-box">6300</div></td>
+                            <td><input type="number" id="cat-qty-prs64" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRS64 Silver Alloy', 6300, 'cat-qty-prs64')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>PRS66 - Silver Alloy</strong></td>
+                            <td><div class="price-box">4500</div></td>
+                            <td><input type="number" id="cat-qty-prs66" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('PRS66 Silver Alloy', 4500, 'cat-qty-prs66')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>SPB91 - Brass Alloy</strong></td>
+                            <td><div class="price-box">2070</div></td>
+                            <td><input type="number" id="cat-qty-spb91" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('SPB91 Brass Alloy', 2070, 'cat-qty-spb91')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>SPB84 - Brass Alloy</strong></td>
+                            <td><div class="price-box">3600</div></td>
+                            <td><input type="number" id="cat-qty-spb84" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('SPB84 Brass Alloy', 3600, 'cat-qty-spb84')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
+                        </tr>
+                         <tr>
+                            <td class="prod-cell"><strong>CU OF STICK</strong></td>
+                            <td><div class="price-box">2250</div></td>
+                            <td><input type="number" id="cat-qty-custick" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('CU OF STICK', 2250, 'cat-qty-custick')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
+                        </tr>
+                        <tr>
+                            <td class="prod-cell"><strong>CU OF DROP</strong></td>
+                            <td><div class="price-box">2700</div></td>
+                            <td><input type="number" id="cat-qty-cudrop" value="1" min="1" class="qty-input"></td>
+                            <td><button class="book-btn" onclick="bookWA('CU OF DROP', 2700, 'cat-qty-cudrop')"><i class="fab fa-whatsapp"></i> BOOK</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -537,7 +659,7 @@
         <div class="container internal-page">
             <h2 class="page-title">Platinum Products</h2>
             <div class="info-card">
-                <h3>Current Base Ask Rate: ₹8,500 / GM</h3>
+                <h3>Current Base Ask Rate: ₹6,310 / GM</h3>
                 <p style="color: var(--text-muted); font-size: 14px;">*Note: Final billing will be calculated based on the live market rate at the exact time of booking confirmation.</p>
             </div>
             <div class="table-wrap">
@@ -546,9 +668,9 @@
                     <tbody>
                         <tr>
                             <td class="prod-cell"><strong>Platinum 999+ (Pt)</strong><br><span class="sub-text">Trade Unit: 10 Gms | Delivery: T+2</span></td>
-                            <td><div class="price-box">8500</div></td>
+                            <td><div class="price-box">6310</div></td>
                             <td><input type="number" id="cat-qty-pt999" value="10" min="10" step="10" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('Platinum 999+', 8500, 'cat-qty-pt999')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td><button class="book-btn" onclick="bookWA('Platinum 999+', 6310, 'cat-qty-pt999')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -561,7 +683,7 @@
         <div class="container internal-page">
             <h2 class="page-title">Palladium Products</h2>
             <div class="info-card">
-                <h3>Current Base Ask Rate: ₹6,000 / GM</h3>
+                <h3>Current Base Ask Rate: ₹13,904 / GM</h3>
                 <p style="color: var(--text-muted); font-size: 14px;">*Note: Final billing will be calculated based on the live market rate at the exact time of booking confirmation.</p>
             </div>
             <div class="table-wrap">
@@ -570,9 +692,9 @@
                     <tbody>
                         <tr>
                             <td class="prod-cell"><strong>Palladium 999+ (Pd)</strong><br><span class="sub-text">Trade Unit: 10 Gms | Delivery: T+2</span></td>
-                            <td><div class="price-box">6000</div></td>
+                            <td><div class="price-box">13904</div></td>
                             <td><input type="number" id="cat-qty-pd999" value="10" min="10" step="10" class="qty-input"></td>
-                            <td><button class="book-btn" onclick="bookWA('Palladium 999+', 6000, 'cat-qty-pd999')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
+                            <td><button class="book-btn" onclick="bookWA('Palladium 999+', 13904, 'cat-qty-pd999')"><i class="fab fa-whatsapp"></i> <span>BOOK</span></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -679,10 +801,9 @@
         }
         
         // --- WHATSAPP BOOKING FUNCTIONALITY ---
-        function bookWA(productName, price, qtyElementId) {
-            // !!! IMPORTANT: Change this to your actual business WhatsApp number !!!
-            const waNumber = "918828851160"; // Updated based on marquee info
+        const waNumber = "918828851160";
 
+        function bookWA(productName, price, qtyElementId) {
             let cleanPrice = parseInt(String(price).replace(/,/g, ''));
             let qty = document.getElementById(qtyElementId).value;
             let total = cleanPrice * qty;
@@ -693,12 +814,18 @@
             window.open(waLink, '_blank');
         }
 
+        function enquireWA(productName) {
+             let msg = `Hello Doit Trade,\nI would like to enquire about the price and availability of:\n\n*Product:* ${productName}\n\nPlease provide details.`;
+             let waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+             window.open(waLink, '_blank');
+        }
+
         // --- LIVE MARKET SIMULATION LOGIC ---
         function updateMarket() {
             const liveMetals = { 
-                'rh': { base: 35000, spread: 5000, change: 100 }, 
-                'pd': { base: 6000, spread: 200, change: 20 }, 
-                'pt': { base: 8500, spread: 500, change: 25 }
+                'rh': { base: 36424, spread: 5000, change: 100 }, 
+                'pd': { base: 13904, spread: 17, change: 20 }, 
+                'pt': { base: 6310, spread: 100, change: 25 }
             };
 
             for(const key in liveMetals) {
